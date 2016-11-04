@@ -2,8 +2,23 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="FerryUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>models.Person</class>
-        <class>models.Reservation</class>
+        <class>entities.Person</class>
+        <class>entities.Reservation</class>
+        <class>entities.Departure</class>
+        <class>entities.FerryConfig</class>
+        <class>entities.Ferry</class>
+        <class>entities.Harbour</class>
+        <class>entities.Route</class>
+        <class>entities.Price</class>
+        <class>entities.TravelingEntityType</class>
+        <class>entities.TravelingEntity</class>
+        <class>entities.Passenger</class>
+        <class>entities.Native</class>
+        <class>entities.Alien</class>
+        <class>entities.Vehicle</class>
+        <class>entities.Car</class>
+        <class>entities.Truck</class>
+        <class>entities.HeavyMachinery</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ferry"/>
             <property name="javax.persistence.jdbc.user" value="ferryman"/>

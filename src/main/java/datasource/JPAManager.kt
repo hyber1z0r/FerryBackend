@@ -1,13 +1,12 @@
 package datasource
 
 import interfaces.IJPAManager
-import models.Person
+import entities.Person
 import javax.persistence.EntityManager
 import javax.persistence.Persistence
 
-
 class JPAManager : IJPAManager {
-    val em: EntityManager
+    private val em: EntityManager
 
     constructor(persistencUnit: String) {
        this.em = Persistence.createEntityManagerFactory(persistencUnit).createEntityManager()

@@ -1,6 +1,6 @@
 package interfaces
 
-import models.Person
+import entities.Person
 
 interface IJPAManager {
     fun create(p: Person)

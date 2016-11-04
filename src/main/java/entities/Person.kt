@@ -1,17 +1,14 @@
-package models
+package entities
 
 import javax.persistence.*
-import java.io.Serializable
-import java.util.ArrayList
 
 @Entity
-@Table(name = "persons")
-class Person : Serializable {
-
+@Table(name = "PERSON")
+class Person {
     @Id
     @Column(name = "PERSON_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0
+    private val id: Long = 0
 
     @Column(name = "FIRST_NAME")
     var firstName: String? = null
@@ -23,7 +20,8 @@ class Person : Serializable {
     @OneToMany(mappedBy = "person", cascade = arrayOf(CascadeType.PERSIST))
     private var reservations: MutableList<Reservation>? = null
 
-    constructor() {}
+    constructor() {
+    }
 
     constructor(firstName: String, lastName: String, email: String) {
         this.firstName = firstName
