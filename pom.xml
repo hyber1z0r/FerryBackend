@@ -6,6 +6,13 @@
     <groupId>dk.jakobgaard</groupId>
     <artifactId>FerryBackend</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <repositories>
+        <repository>
+            <id>contract</id>
+            <name>Contract artifactory</name>
+            <url>http://46.101.252.236:8082/artifactory/simple/libs-snapshot-local/</url>
+        </repository>
+    </repositories>
     <properties>
         <kotlin.version>1.0.4</kotlin.version>
     </properties>
@@ -70,6 +77,17 @@
             <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mogper</groupId>
+            <artifactId>MogPerContract</artifactId>
+            <version>1.0-20161107.111307-4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mogper</groupId>
+            <artifactId>MogPerContract</artifactId>
+            <version>1.0-20161107.111307-4</version>
+            <classifier>tests</classifier>
         </dependency>
     </dependencies>
 </project>
