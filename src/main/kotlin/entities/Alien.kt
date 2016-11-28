@@ -4,8 +4,4 @@ import javax.persistence.*
 
 @Entity
 @DiscriminatorValue("ALIEN")
-class Alien : Passenger {
-    constructor() {
-
-    }
-}
+class Alien() : Passenger()

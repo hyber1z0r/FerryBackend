@@ -11,18 +11,18 @@ class Reservation : Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private val id: Long = 0
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinColumn(name = "PERSON_ID")
     var person: Person? = null
 
     @Column(name = "HAS_ARRIVED")
     var isHasArrived: Boolean = false
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinColumn(name = "DEPARTURE_ID")
     var departure: Departure? = null
 
-    @ManyToMany(mappedBy = "reservations", fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToMany(mappedBy = "reservations", fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     private var travelingEntities: MutableList<TravelingEntity>? = null
 
     init {

@@ -13,11 +13,11 @@ class Price {
     @Column(name = "AMOUNT")
     var amount: Double? = 0.0
 
-    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
+    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
     @JoinColumn(name = "ROUTE_ID")
     var route: Route? = null
 
-    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
+    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
     @JoinColumn(name = "TRAVELING_ENTITIY_TYPE_ID")
     var travelingEntityType: TravelingEntityType? = null
 

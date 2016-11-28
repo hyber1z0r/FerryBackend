@@ -13,10 +13,10 @@ class Ferry {
     @Column(name = "NAME")
     var name: String? = ""
 
-    @OneToMany(mappedBy = "ferry", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ferry", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
     private var ferryConfigs: MutableList<FerryConfig>? = null
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinTable(name = "FERRY_HARBOUR",
             joinColumns = arrayOf(JoinColumn(name = "F_ID", referencedColumnName = "FERRY_ID")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "H_ID", referencedColumnName = "HARBOUR_ID")))

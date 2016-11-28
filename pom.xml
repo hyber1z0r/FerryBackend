@@ -81,12 +81,12 @@
         <dependency>
             <groupId>com.mogper</groupId>
             <artifactId>MogPerContract</artifactId>
-            <version>1.0-20161107.111307-4</version>
+            <version>1.0-20161116.142233-2</version>
         </dependency>
         <dependency>
             <groupId>com.mogper</groupId>
             <artifactId>MogPerContract</artifactId>
-            <version>1.0-20161107.111307-4</version>
+            <version>1.0-20161116.142233-2</version>
             <classifier>tests</classifier>
         </dependency>
     </dependencies>

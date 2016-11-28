@@ -22,15 +22,16 @@ class Departure : Serializable {
     @OneToMany(mappedBy = "departure", cascade = arrayOf(CascadeType.PERSIST))
     private var reservations: MutableList<Reservation>? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinColumn(name = "FERRY_CONFIG_ID")
     var ferryConfig: FerryConfig? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinColumn(name = "ROUTE_ID")
     var route: Route? = null
 
-    constructor() {}
+    constructor() {
+    }
 
     constructor(departureTime: LocalTime, departureDate: LocalDate) {
         this.departureTime = departureTime

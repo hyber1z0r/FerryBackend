@@ -13,7 +13,7 @@ class Harbour {
     @Column(name = "NAME")
     var name: String? = ""
 
-    @ManyToMany(mappedBy = "harbours", fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToMany(mappedBy = "harbours", fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     private var ferries: MutableList<Ferry>? = null
 
     @OneToMany(mappedBy = "destination", cascade = arrayOf(CascadeType.PERSIST))
