@@ -1,6 +1,5 @@
 package entities
 
-import dtos.RouteIdentifier
 import dtos.RouteSummary
 import javax.persistence.*
 
@@ -23,19 +22,19 @@ class Route {
     var destination: Harbour? = null
 
     @OneToMany(mappedBy = "route", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
-    private var departures: MutableList<Departure>? = null
+    var departures: MutableList<Departure>? = null
 
     @OneToMany(mappedBy = "route", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
-    private var prices: MutableList<Price>? = null
+    var prices: MutableList<Price>? = null
 
-    constructor(travelTime: Double) {
+    constructor(travelTime: Double, departures: MutableList<Departure> = mutableListOf(),
+                prices: MutableList<Price> = mutableListOf()) {
         this.travelTime = travelTime
-        this.departures = mutableListOf()
-        this.prices = mutableListOf()
+        this.departures = departures
+        this.prices = prices
     }
 
     constructor() {
-
     }
 
     fun addDeparture(departure: Departure) {
