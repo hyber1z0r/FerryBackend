@@ -1,7 +1,6 @@
 package datasource
 
 import dtos.*
-import entities.Person
 import entities.Route
 import entities.TravellingEntity
 import interfaces.UserInterface
@@ -35,12 +34,4 @@ class UserManager(em: EntityManager) : UserInterface {
     override fun createReservation(p0: PersonDetail?, p1: Long, p2: MutableList<TravellingEntity>?): ReservationIdentifier {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    fun createPerson(p: Person) {
-        em.transaction.begin()
-        em.persist(p)
-        em.transaction.commit()
-    }
-
-
 }
