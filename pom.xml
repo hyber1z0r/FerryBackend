@@ -15,6 +15,7 @@
     </repositories>
     <properties>
         <kotlin.version>1.0.4</kotlin.version>
+        <contract.version>1.0-20161116.142233-2</contract.version>
     </properties>
     <build>
         <plugins>
@@ -81,12 +82,12 @@
         <dependency>
             <groupId>com.mogper</groupId>
             <artifactId>MogPerContract</artifactId>
-            <version>1.0-20161116.142233-2</version>
+            <version>${contract.version}</version>
         </dependency>
         <dependency>
             <groupId>com.mogper</groupId>
             <artifactId>MogPerContract</artifactId>
-            <version>1.0-20161116.142233-2</version>
+            <version>${contract.version}</version>
             <classifier>tests</classifier>
         </dependency>
     </dependencies>
