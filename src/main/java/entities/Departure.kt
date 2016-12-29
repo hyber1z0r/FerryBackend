@@ -1,26 +1,32 @@
 package entities
 
-import javax.persistence.*
+import dtos.DepartureDetail
 import java.io.Serializable
+import java.sql.Date
+import java.sql.Timestamp
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
+import java.util.*
+import javax.persistence.*
 
 @Entity
 @Table(name = "DEPARTURE")
+@NamedQueries(NamedQuery(name = "Departure.search", query = "SELECT d FROM Departure d WHERE d.departureDate = :date AND d.route.id = :routeId"))
 class Departure : Serializable {
     @Id
     @Column(name = "DEPARTURE_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private val id: Long = 0
 
-    @Column(name = "DEPARTURE_TIME")
-    var departureTime: LocalTime? = null
+    @Column(name = "DEPARTURE_TIME", nullable = false)
+    var departureTime: Timestamp? = null
 
-    @Column(name = "DEPARTURE_DATE")
-    var departureDate: LocalDate? = null
+    @Column(name = "DEPARTURE_DATE", nullable = false)
+    var departureDate: Date? = null
 
     @OneToMany(mappedBy = "departure", cascade = arrayOf(CascadeType.PERSIST))
-    private var reservations: MutableList<Reservation>? = null
+    var reservations: MutableList<Reservation>? = null
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinColumn(name = "FERRY_CONFIG_ID")
@@ -34,9 +40,9 @@ class Departure : Serializable {
     }
 
     constructor(departureTime: LocalTime, departureDate: LocalDate) {
-        this.departureTime = departureTime
-        this.departureDate = departureDate
-        this.reservations = mutableListOf()
+        this.departureTime = Timestamp.valueOf(LocalDateTime.of(departureDate, departureTime))
+        this.departureDate = Date.valueOf(departureDate)
+        this.reservations = ArrayList()
     }
 
     fun addReservation(reservation: Reservation) {
@@ -45,4 +51,6 @@ class Departure : Serializable {
             reservation.departure = this
         }
     }
+
+    fun toDTO(): DepartureDetail = DepartureDetail(this.departureTime?.toLocalDateTime(), this.route?.toDTO(), this.id)
 }

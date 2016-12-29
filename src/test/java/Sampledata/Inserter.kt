@@ -15,6 +15,7 @@ class Inserter(manager: EntityManager) {
     fun insert() {
         val person = Person("Leon", "Hansen", "leon@qqq.dk")
         val dep = Departure(LocalTime.now(), LocalDate.now())
+        val dep2 = Departure(LocalTime.now(), LocalDate.of(2008, 12, 24))
         val res = Reservation()
         val ferryconf = FerryConfig(50, 10, 2000.0)
         val ferry = Ferry("Margrethe")
@@ -43,6 +44,7 @@ class Inserter(manager: EntityManager) {
         harbour2.addDestinationRoute(route2)
 
         route1.addDeparture(dep)
+        route1.addDeparture(dep2)
 
         harbour.addFerry(ferry)
         ferry.addFerryConfig(ferryconf)
@@ -52,6 +54,28 @@ class Inserter(manager: EntityManager) {
 
         em.transaction.begin()
         em.persist(person)
+        em.transaction.commit()
+    }
+
+    fun drop(){
+        em.transaction.begin()
+        em.createNativeQuery("TRUNCATE TABLE ferry_harbour CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE traveling_entity_reservation CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE reservation CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE departure CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE ferry_config CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE ferry CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE price CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE route CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE harbour CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE person CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE truck CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE native CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE heavymachinery CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE car CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE alien CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE travelingentity CASCADE").executeUpdate()
+        em.createNativeQuery("TRUNCATE TABLE traveling_entity_type CASCADE").executeUpdate()
         em.transaction.commit()
     }
     //        // FerryConfigs
