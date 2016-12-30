@@ -2,3 +2,23 @@ language: java
 
 jdk:
   - oraclejdk8
+
+services:
+  - postgresql
+
+notifications:
+  email: true
+
+addons:
+  postgresql: "9.6"
+
+before_script:
+  - psql -c "CREATE USER ferryman WITH PASSWORD 'ferryman' SUPERUSER CREATEDB CREATEROLE;" -U postgres
+  - psql -c "CREATE DATABASE ferry;" -U postgres
+  - psql -c 'CREATE EXTENSION IF NOT EXISTS postgis;' -d ferry -U postgres
+
+script:
+  - mvn test
+
+#after_success:
+#  - if branch is master then package and upload to repo
