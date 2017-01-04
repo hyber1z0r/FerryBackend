@@ -11,10 +11,10 @@ abstract class TravelingEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private val id: Long = 0
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     var travelingEntityType: TravelingEntityType? = null
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinTable(name = "TRAVELING_ENTITY_RESERVATION",
             joinColumns = arrayOf(JoinColumn(name = "TE_ID", referencedColumnName = "TRAVELING_ENTITY_ID")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "R_ID", referencedColumnName = "RESERVATION_ID")))

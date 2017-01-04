@@ -1,9 +1,11 @@
 package entities
 
+import dtos.RouteSummary
 import javax.persistence.*
 
 @Entity
 @Table(name = "ROUTE")
+@NamedQueries(NamedQuery(name = "Route.findAll", query = "SELECT r FROM Route r"))
 class Route {
     @Id
     @Column(name = "ROUTE_ID")
@@ -11,28 +13,28 @@ class Route {
     private val id: Long = 0
 
     @Column(name = "TRAVEL_TIME")
-    var travelTime: Int = 0
+    var travelTime: Double = 0.0
 
-    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
+    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
     var origin: Harbour? = null
 
-    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
+    @ManyToOne(cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
     var destination: Harbour? = null
 
-    @OneToMany(mappedBy = "route", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
-    private var departures: MutableList<Departure>? = null
+    @OneToMany(mappedBy = "route", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
+    var departures: MutableList<Departure>? = null
 
-    @OneToMany(mappedBy = "route", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.LAZY)
-    private var prices: MutableList<Price>? = null
+    @OneToMany(mappedBy = "route", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
+    var prices: MutableList<Price>? = null
 
-    constructor(travelTime: Int) {
+    constructor(travelTime: Double, departures: MutableList<Departure> = mutableListOf(),
+                prices: MutableList<Price> = mutableListOf()) {
         this.travelTime = travelTime
-        this.departures = mutableListOf()
-        this.prices = mutableListOf()
+        this.departures = departures
+        this.prices = prices
     }
 
     constructor() {
-
     }
 
     fun addDeparture(departure: Departure) {
@@ -49,4 +51,5 @@ class Route {
         }
     }
 
+    fun toDTO() = RouteSummary(travelTime, origin?.name, destination?.name, id)
 }

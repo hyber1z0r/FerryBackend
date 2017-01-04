@@ -5,8 +5,4 @@ import javax.persistence.*
 @Entity
 @Table(name = "NATIVE")
 @DiscriminatorValue("NATIVE")
-class Native : Passenger {
-    constructor() {
-
-    }
-}
+class Native() : Passenger()
