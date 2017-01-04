@@ -10,12 +10,12 @@
         <repository>
             <id>contract</id>
             <name>Contract artifactory</name>
-            <url>http://46.101.252.236:8082/artifactory/simple/libs-snapshot-local/</url>
+            <url>https://artifactory-webzite.rhcloud.com/artifactory/libs-snapshot/</url>
         </repository>
     </repositories>
     <properties>
         <kotlin.version>1.0.4</kotlin.version>
-        <contract.version>1.0-20161116.142233-2</contract.version>
+        <contract.version>1.0-20161210.073727-4</contract.version>
     </properties>
     <build>
         <plugins>

@@ -10,7 +10,7 @@ notifications:
   email: true
 
 addons:
-  postgresql: "9.6"
+  postgresql: "9.4"
 
 before_script:
   - psql -c "CREATE USER ferryman WITH PASSWORD 'ferryman' SUPERUSER CREATEDB CREATEROLE;" -U postgres
