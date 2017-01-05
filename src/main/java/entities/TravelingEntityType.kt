@@ -1,5 +1,6 @@
 package entities
 
+import entities.Price
 import javax.persistence.*
 
 @Entity
@@ -10,10 +11,10 @@ class TravelingEntityType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private val id: Long = 0
 
-    @OneToMany(mappedBy = "travelingEntityType", fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @OneToMany(mappedBy = "travelingEntityType", fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     private val prices: MutableList<Price>
 
-    @OneToMany(mappedBy = "travelingEntityType", fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @OneToMany(mappedBy = "travelingEntityType", fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     private val travelingEntities: MutableList<TravelingEntity>
 
     constructor() {

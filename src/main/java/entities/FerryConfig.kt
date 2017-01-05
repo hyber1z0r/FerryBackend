@@ -1,5 +1,6 @@
 package entities
 
+import entities.Ferry
 import javax.persistence.*
 
 @Entity
@@ -22,7 +23,7 @@ class FerryConfig {
     @OneToMany(mappedBy = "ferryConfig", cascade = arrayOf(CascadeType.PERSIST))
     private var departures: MutableList<Departure>? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.PERSIST))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = arrayOf(CascadeType.PERSIST))
     @JoinColumn(name = "FERRY_ID")
     var ferry: Ferry? = null
 

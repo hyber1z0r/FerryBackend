@@ -3,9 +3,4 @@ package entities
 import javax.persistence.*
 
 @MappedSuperclass
-abstract class Passenger : TravelingEntity {
-
-    constructor() {
-
-    }
-}
+abstract class Passenger() : TravelingEntity()

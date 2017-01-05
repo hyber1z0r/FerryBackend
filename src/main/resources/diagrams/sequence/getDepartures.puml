@@ -1,0 +1,25 @@
+@startuml
+actor Frontend
+Frontend -> UserInterface: getDepartures(date: LocalDate, route: RouteIdentifier)
+activate UserInterface
+UserInterface -> EntityManager: createNamedQuery("Departure.search")
+activate EntityManager
+UserInterface <- EntityManager: query
+deactivate EntityManager
+UserInterface -> Query: resultList
+activate Query
+database DB
+Query -> DB
+activate DB
+UserInterface <- DB: List<Departure>
+deactivate DB
+deactivate Query
+loop map
+UserInterface -> Departure: toDTO
+activate Departure
+UserInterface <- Departure: DepartureDetail
+deactivate Departure
+end
+Frontend <- UserInterface: List<DepartureDetail>
+deactivate UserInterface
+@enduml
