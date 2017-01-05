@@ -56,4 +56,11 @@ class UserManagerTest {
         val departures = manager?.getDepartures(searchDate, summaries!![0])
         assertTrue(departures?.size == 0)
     }
+
+    @Test
+    fun getDepartureNotFound() {
+        val departureId = -1L
+        val departure = manager?.getDeparture(departureId)
+        assertTrue(departure == null)
+    }
 }
