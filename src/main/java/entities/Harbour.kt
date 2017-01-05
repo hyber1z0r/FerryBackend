@@ -1,5 +1,6 @@
 package entities
 
+import entities.Ferry
 import javax.persistence.*
 
 @Entity

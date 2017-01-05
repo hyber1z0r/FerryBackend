@@ -1,6 +1,9 @@
 package Sampledata
 
 import entities.*
+import entities.Ferry
+import entities.*
+import entities.Price
 import java.time.LocalDate
 import java.time.LocalTime
 import javax.persistence.EntityManager
@@ -23,8 +26,8 @@ class Inserter(manager: EntityManager) {
         val harbour2 = Harbour("Margrethes Havn")
         val route1 = Route(30.0)
         val route2 = Route(30.0)
-        val expensive = Price(3000.0)
-        val cheap = Price(1500.0)
+        val expensive = entities.Price(3000.0)
+        val cheap = entities.Price(1500.0)
         val travelingEntityType = TravelingEntityType()
         val alien: TravelingEntity = Alien()
         val truck: TravelingEntity = Truck(1000.0, "AB123456", 8.0)

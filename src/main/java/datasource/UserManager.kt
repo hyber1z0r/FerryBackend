@@ -33,8 +33,9 @@ class UserManager(em: EntityManager) : UserInterface {
         return departures.map(Departure::toDTO)
     }
 
-    override fun getDeparture(p0: Long): DepartureIdentifier {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getDeparture(departureId: Long): DepartureIdentifier? {
+        val departure: Departure? = em.find(Departure::class.java, departureId)
+        return departure?.toDTO()
     }
 
     override fun createReservation(p0: PersonDetail?, p1: Long, p2: MutableList<TravellingEntity>?): ReservationIdentifier {

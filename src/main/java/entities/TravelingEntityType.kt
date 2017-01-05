@@ -1,5 +1,6 @@
 package entities
 
+import entities.Price
 import javax.persistence.*
 
 @Entity
